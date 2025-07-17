@@ -91,4 +91,4 @@ export const FetchVideos = async (): Promise<VideoItem[]> => {
 export const FetchChannelImage=async(chanelId:string)=>{
     const response =await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${chanelId}&key=${import.meta.env.VITE_YOUTUBE_API_KEY}`);
     return response.data.items[0].snippet.thumbnails.medium;
-}
+};
