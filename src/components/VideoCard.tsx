@@ -10,7 +10,7 @@ const VideoCard=({data}:{data:VideoItem})=>{
     const{data:channel,isLoading}=useChannelAvatar(data.snippet.channelId);
 
     return(
-        <NavLink to={`watch?v=${data.id}`} className="flex flex-col space-y-3  **:transition-colors **:duration-300 cursor-pointer">
+        <NavLink to={`watch?v=${data.id}&c=${data.snippet.channelId}`} className="flex flex-col space-y-3  **:transition-colors **:duration-300 cursor-pointer z-0">
             <div className="h-[200px] w-[330px] lg:h-[150px] lg:w-[250px] rounded-xl  **:transition-colors **:duration-300 overflow-hidden shadow-zinc-400 shadow-md dark:shadow-zinc-900 relative">
                 <img className={`w-full h-full object-center object-cover absolute inset-0 z-1`} src={data.snippet.thumbnails.high.url} alt=""/>
                 <span className={` absolute top-2 right-[6%] text-white px-[5px] py-[3px] text-xs font-light bg-zinc-500/60 rounded-sm z-5`}>{formatViewCount(Number(data.statistics.viewCount))}</span>

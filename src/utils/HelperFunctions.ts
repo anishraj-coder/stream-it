@@ -1,5 +1,7 @@
+import axios from "axios";
+import {youtubeSearchSuggestionsApi} from "@/utils/Constants.ts";
 
-export function parseISODuration(duration: string): string {
+export const parseISODuration =(duration:string)=>{
     const regex = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
 
     const matches = duration.match(regex);
@@ -17,7 +19,7 @@ export function parseISODuration(duration: string): string {
         ? `${hours}:${paddedMinutes}:${paddedSeconds}`
         : `${paddedMinutes}:${paddedSeconds}`;
 }
-export function formatViewCount(views: number): string {
+export const formatViewCount =(views: number)=>{
     if (views >= 1_000_000_000) {
         return (views / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B';
     }
@@ -28,4 +30,8 @@ export function formatViewCount(views: number): string {
         return (views / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
     }
     return views.toString();
+}
+export const FetchSearchSuggestions=async (searchText:string)=>{
+    const response=await axios.get(youtubeSearchSuggestionsApi+searchText);
+    return response.data[1] as Array<string>;
 }
